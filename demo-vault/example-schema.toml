@@ -1,0 +1,6 @@
+[title]
+type = string
+
+[priority]
+type = int
+valid = [0..10]
