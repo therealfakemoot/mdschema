@@ -1,11 +1,10 @@
 package main
 
 import (
-	"bytes"
 	"flag"
-	"fmt"
 	"io"
 	"io/fs"
+	"log"
 	"os"
 	"path/filepath"
 
@@ -59,16 +58,29 @@ type MetaAccumulator struct {
 }
 
 func (ma *MetaAccumulator) WalkFunc(path string, info fs.FileInfo, err error) error {
+	if info.IsDir() {
+		return nil
+	}
+
+	if err != nil {
+		log.Printf("error handed to walkfunc: %s", err)
+		return err
+	}
 
 	f, err := os.Open(path)
 	if err != nil {
+		log.Printf("error opening note: %s\n", path)
 		return err
 	}
-	var buf bytes.Buffer
-	io.Copy(f, &buf)
-	document := ma.Parser.Parse(text.NewReader(buf.Bytes()))
+
+	b, err := io.ReadAll(f)
+	if err != nil {
+		log.Printf("error ingesting note: %s\n", err)
+	}
+
+	document := ma.Parser.Parse(text.NewReader(b))
 	metaData := document.OwnerDocument().Meta()
-	fmt.Printf("%#v\n", metaData)
+	log.Printf("%#v\n", metaData)
 
 	return nil
 }
