@@ -1,4 +1,4 @@
-module github.com/therealfakemoot/vault-schema
+module github.com/therealfakemoot/mdschema
 
 go 1.18
 
