@@ -6,6 +6,6 @@ type PolicyRange interface {
 
 type Policy struct {
 	Key   string
-	Type  string
+	Type  YAMLType
 	Range PolicyRange
 }
