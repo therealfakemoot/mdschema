@@ -12,7 +12,7 @@ import (
 )
 
 type MetaAccumulator struct {
-	Keys   []string
+	Keys   map[string]bool
 	Schema map[string]Policy
 	Parser parser.Parser
 }
@@ -40,7 +40,10 @@ func (ma *MetaAccumulator) WalkFunc(path string, info fs.FileInfo, err error) er
 
 	document := ma.Parser.Parse(text.NewReader(b))
 	metaData := document.OwnerDocument().Meta()
-	log.Printf("%#v\n", metaData)
+
+	for k, _ := range metaData {
+		ma.Keys[k] = true
+	}
 
 	return nil
 }

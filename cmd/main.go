@@ -29,7 +29,7 @@ func main() {
 	)
 
 	ma := mdschema.MetaAccumulator{
-		Keys:   make([]string, 0),
+		Keys:   make(map[string]bool),
 		Schema: make(map[string]mdschema.Policy),
 		Parser: markdown.Parser(),
 	}
@@ -38,4 +38,5 @@ func main() {
 		log.Printf("error walking root: %s", err)
 	}
 
+	log.Printf("%#v\n", ma)
 }
