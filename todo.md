@@ -1,5 +1,6 @@
 # Schemas
 1) Key names
+1a) required
 2) key:value types
 3) acceptable values ( support both enum or [x..y] notation, ideally )
 

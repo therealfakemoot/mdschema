@@ -5,7 +5,6 @@ type PolicyRange interface {
 }
 
 type Policy struct {
-	Key   string
-	Type  YAMLType
-	Range PolicyRange
+	Type  YAMLType `toml: "type"`
+	Valid PolicyRange
 }
