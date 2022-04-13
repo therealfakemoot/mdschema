@@ -1,5 +1,11 @@
 [title]
 type = 0
+[title.valid]
+# length
+# pattern
+# enum/whitelist
+# blacklist
+
 
 [priority]
 type = 1

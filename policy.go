@@ -1,8 +1,7 @@
 package mdschema
 
-type PolicyRange struct {
-	Start int
-	End   int
+type IntValidator struct {
+	Start, End, Step int
 }
 
 // Valid(interface{}) bool
