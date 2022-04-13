@@ -3,7 +3,7 @@ package mdschema
 import (
 	"fmt"
 	"io"
-	"log"
+	// "log"
 
 	"github.com/BurntSushi/toml"
 )
@@ -17,17 +17,13 @@ const (
 	YAMLObject
 )
 
-func LoadSchema(r io.Reader) (Policy, error) {
-	var p Policy
+func LoadSchema(r io.Reader) (map[string]Policy, error) {
 	raw := make(map[string]Policy)
 
-	m, err := toml.DecodeReader(r, &raw)
+	_, err := toml.DecodeReader(r, &raw)
 	if err != nil {
-		return p, fmt.Errorf("error decoding schema file: %w", err)
+		return raw, fmt.Errorf("error decoding schema file: %w", err)
 	}
 
-	fmt.Println("fuck")
-	log.Println("fart")
-	log.Printf("%#v\n", m)
-	return p, nil
+	return raw, nil
 }

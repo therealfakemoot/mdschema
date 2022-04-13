@@ -1,6 +1,9 @@
 [title]
-type = string
+type = 0
 
 [priority]
-type = int
-valid = [0..10]
+type = 1
+optional = true
+[priority.valid]
+start = 0
+end = 10
