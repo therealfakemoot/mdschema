@@ -1,10 +1,17 @@
 [title]
 type = 0
-[title.valid]
-# length
+optional = false
+[title.string]
+length = 75
 # pattern
 # enum/whitelist
 # blacklist
+# [title.int]
+# start
+# stop
+# step
+# [title.array]
+# [title.ojbect]
 
 
 [priority]
