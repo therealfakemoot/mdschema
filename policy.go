@@ -1,7 +1,7 @@
 package mdschema
 
 type IntPolicy struct {
-	Start, End, Step int
+	Start, Stop, Step int
 }
 
 type StringPolicy struct {

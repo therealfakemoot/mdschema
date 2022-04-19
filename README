@@ -1,0 +1,16 @@
+# The Schema
+All types support a Whitelist/Blacklist value. These are arrays of the respective type, e.g. `[]int`, `[]string`.
+## Integer
+### Start, Stop, Step
+These parameters let you specify a valid "range" of integers. Valid inputs include `-500, 100, 4`, `125, -5, -2`, and so on. It will basically be mapped to a loop of the form
+```go
+for ( i := start; i != stop; i+= step ) {
+
+}
+```
+## String
+##Array
+# Config Format
+# Usage
+
+
