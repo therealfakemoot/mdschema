@@ -21,7 +21,11 @@ type ObjectPolicy struct {
 	// this one is the most out of control and i genuinely don't think i have the chops to make this work good enough to publish. sorry.
 }
 
-type Policy struct {
+type Policy interface {
+	Validate(interface{}) bool
+}
+
+type Config struct {
 	Type     YAMLType `toml:"type"`
 	Optional bool     `toml:"optional"`
 	Int      IntPolicy

@@ -17,8 +17,8 @@ const (
 	YAMLObject
 )
 
-func LoadSchema(r io.Reader) (map[string]Policy, error) {
-	raw := make(map[string]Policy)
+func LoadConfig(r io.Reader) (map[string]Config, error) {
+	raw := make(map[string]Config)
 
 	_, err := toml.DecodeReader(r, &raw)
 	if err != nil {

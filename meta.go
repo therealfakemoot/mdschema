@@ -13,7 +13,7 @@ import (
 
 type MetaAccumulator struct {
 	Keys   map[string]bool
-	Schema map[string]Policy
+	Schema map[string]Config
 	Parser parser.Parser
 }
 

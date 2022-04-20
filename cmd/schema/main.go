@@ -24,7 +24,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("error opening schema file: %s\n", err)
 	}
-	p, err := mdschema.LoadSchema(f)
+	p, err := mdschema.LoadConfig(f)
 	if err != nil {
 		log.Fatalf("error loading schema: %s\n", err)
 	}
