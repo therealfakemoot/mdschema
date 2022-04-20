@@ -11,7 +11,7 @@ func (ip IntPolicy) Validate(v interface{}) bool {
 	in := v.(int)
 
 	valid := make([]int, 0)
-	for i := ip.Start; i != ip.Stop; i += ip.Step {
+	for i := ip.Start; i <= ip.Stop; i += ip.Step {
 		valid = append(valid, i)
 	}
 

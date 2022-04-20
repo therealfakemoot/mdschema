@@ -30,7 +30,7 @@ func main() {
 
 	ma := mdschema.MetaAccumulator{
 		Keys:   make(map[string]bool),
-		Schema: make(map[string]mdschema.Policy),
+		Schema: make(map[string]mdschema.SchemaKey),
 		Parser: markdown.Parser(),
 	}
 	err := filepath.Walk(vaultRoot, ma.WalkFunc)
