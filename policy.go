@@ -2,17 +2,42 @@ package mdschema
 
 type IntPolicy struct {
 	Start, Stop, Step int
+	Required          bool
+	Whitelist         map[int]bool
+	Blacklist         map[int]bool
 }
 
 func (ip IntPolicy) Validate(v interface{}) bool {
-	return true
+	in := v.(int)
+
+	valid := make([]int, 0)
+	for i := ip.Start; i != ip.Stop; i += ip.Step {
+		valid = append(valid, i)
+	}
+
+	if ip.Blacklist[in] {
+		return false
+	}
+
+	if ip.Whitelist[in] {
+		return true
+	}
+
+	for _, i := range valid {
+		if i == in {
+			return true
+		}
+	}
+
+	return false
 }
 
 type StringPolicy struct {
+	Required  bool
 	Length    int
 	Pattern   string
-	Whitelist []string
-	Blacklist []string
+	Whitelist map[int]string
+	Blacklist map[int]string
 }
 
 func (sp StringPolicy) Validate(v interface{}) bool {
@@ -20,9 +45,10 @@ func (sp StringPolicy) Validate(v interface{}) bool {
 }
 
 type ArrayPolicy struct {
-	Members YAMLType
-	Length  int
-	Allowed []interface{}
+	Required bool
+	Members  YAMLType
+	Length   int
+	Allowed  []interface{}
 }
 
 func (ap ArrayPolicy) Validate(v interface{}) bool {
@@ -30,6 +56,7 @@ func (ap ArrayPolicy) Validate(v interface{}) bool {
 }
 
 type ObjectPolicy struct {
+	Required bool
 	// this one is the most out of control and i genuinely don't think i have the chops to make this work good enough to publish. sorry.
 }
 
