@@ -17,8 +17,8 @@ const (
 	YAMLObject
 )
 
-func LoadConfig(r io.Reader) (map[string]Config, error) {
-	raw := make(map[string]Config)
+func LoadSchemaKeys(r io.Reader) (map[string]SchemaKey, error) {
+	raw := make(map[string]SchemaKey)
 
 	_, err := toml.DecodeReader(r, &raw)
 	if err != nil {

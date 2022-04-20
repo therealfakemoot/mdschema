@@ -24,10 +24,13 @@ func main() {
 	if err != nil {
 		log.Fatalf("error opening schema file: %s\n", err)
 	}
-	p, err := mdschema.LoadConfig(f)
+	keys, err := mdschema.LoadSchemaKeys(f)
 	if err != nil {
 		log.Fatalf("error loading schema: %s\n", err)
 	}
 
-	fmt.Printf("%#v\n", p)
+	for k, v := range keys {
+		fmt.Printf("%#+v\t%#+v\n", k, v.Policy())
+	}
+
 }

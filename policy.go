@@ -11,6 +11,11 @@ type StringPolicy struct {
 	Blacklist []string
 }
 
+func (sp StringPolicy) Validate(v interface{}) bool {
+
+	return true
+}
+
 type ArrayPolicy struct {
 	Members YAMLType
 	Length  int
@@ -25,11 +30,22 @@ type Policy interface {
 	Validate(interface{}) bool
 }
 
-type Config struct {
+// SchemaKey is the atom of the config. This represents the metadata key you want to apply a policy to.
+type SchemaKey struct {
 	Type     YAMLType `toml:"type"`
 	Optional bool     `toml:"optional"`
 	Int      IntPolicy
 	String   StringPolicy
 	Array    ArrayPolicy
 	Ojbect   ObjectPolicy
+}
+
+// Policies
+func (sk SchemaKey) Policy() Policy {
+	switch sk.Type {
+	case YAMLString:
+		return sk.String
+
+	}
+	return nil
 }
